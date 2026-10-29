@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Global Headings Centered */
+h1, h2, h4, h5, h6 {
+  text-align: center;
+  color: #0a3d62; /* Government blue */
+  margin-bottom: 15px;
+}

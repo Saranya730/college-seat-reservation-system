@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# College Seat Reservation System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for managing college seat reservations. Students can register and log in to access the portal; administrators can view all registered users from a secure admin dashboard.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 19, React Router v6, Axios, CSS |
+| Backend | Node.js, Express 5, Mongoose 8 |
+| Database | MongoDB (local or Atlas) |
+| Security | bcryptjs (password hashing), dotenv (env config) |
+
+---
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) v18 or later
+- [MongoDB](https://www.mongodb.com/try/download/community) running locally **or** a MongoDB Atlas connection string
+
+---
+
+## Project Structure
+
+```
+college-seat-reservation-system/
+├── back/               # Express + MongoDB backend
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   ├── .env.example    # Copy to .env and fill in values
+│   └── package.json
+├── front/              # React frontend
+│   ├── public/
+│   ├── src/
+│   │   └── components/
+│   └── package.json
+├── portfolio.html      # Static portfolio page
+└── README.md
+```
+
+---
+
+## Setup
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repo-url>
+cd college-seat-reservation-system
+```
+
+### 2. Configure the backend environment
+
+```bash
+cd back
+cp .env.example .env
+```
+
+Open `back/.env` and set your values:
+
+```env
+MONGO_URI=mongodb://127.0.0.1:27017/adminUserDB
+PORT=5000
+ADMIN_EMAIL=your-admin-email@example.com
+ADMIN_PASSWORD=your-secure-admin-password
+```
+
+> ⚠️ Never commit `.env`. It is already listed in `.gitignore`.
+
+### 3. Install backend dependencies
+
+```bash
+# inside back/
+npm install
+```
+
+### 4. Install frontend dependencies
+
+```bash
+cd ../front
+npm install
+```
+
+---
+
+## Running the Application
+
+Open **two terminal windows**:
+
+**Terminal 1 — Backend:**
+```bash
+cd back
+npm start          # production
+# or
+npm run dev        # development (auto-restarts with nodemon)
+```
+
+The API will be available at `http://localhost:5000`.
+
+**Terminal 2 — Frontend:**
+```bash
+cd front
+npm start
+```
+
+The React app will open at `http://localhost:3000`.
+
+---
+
+## Application Routes
+
+| Path | Page | Description |
+|------|------|-------------|
+| `/` | Register | New user registration |
+| `/login` | Login | Student login |
+| `/admin-login` | Admin Login | Administrator login (server-side auth) |
+| `/admin` | Admin Dashboard | View all registered users |
+| `/home` | Home | Post-login landing page |
+
+---
+
+## Security Notes
+
+- User passwords are hashed with **bcryptjs** before storage — plain-text passwords are never saved.
+- Admin credentials are stored **only in the backend `.env`** file and are never exposed in source code or frontend bundles.
+- The `.env` file is `.gitignore`d and will never be committed to Git.
+
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
+### Backend (`back/`)
 
-### `npm start`
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start the Express server |
+| `npm run dev` | Start with nodemon (auto-reload) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend (`front/`)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start the React dev server |
+| `npm run build` | Build for production |
+| `npm test` | Run tests |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Notes
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Existing users registered before bcrypt was added will need to re-register.
+- For production deployment, replace the local MongoDB URI with a [MongoDB Atlas](https://www.mongodb.com/atlas) connection string and set a strong `ADMIN_PASSWORD`.
